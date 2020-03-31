@@ -1,0 +1,24 @@
+<div>
+    <h2>All my favorite movies....</h2>
+</div>
+
+<section *ngFor="let fav of movies[0]">
+    <div class="container" >
+        <div class="card" style="width: 18rem; margin-bottom: 9rem;"  >           
+    <img [src]="fav?.imageUrl" class="card-img-top" alt="{{fav.title}}" style="width:208px; height:268px">
+              <div class="card-body">
+                <h5 class="card-title">
+                  Title: &nbsp;&nbsp;&nbsp;{{fav?.title  }}
+                </h5>
+                <p class="card-text">Genre:&nbsp;&nbsp;&nbsp;
+                {{fav?.genre }}</p>
+
+                <p class="card-text">Duration: &nbsp;&nbsp;&nbsp; {{fav?.runtime}}</p>
+              </div>
+          </div>
+    </div>
+    <div>
+      <button id={{fav?._id}} (click)="removeFav($event)">Remove Favorite</button>
+      
+    </div>
+</section>

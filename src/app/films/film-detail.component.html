@@ -1,0 +1,52 @@
+<hr>
+<div class="card container">
+  <div class="card-header">
+    <h1>{{film.title}}</h1>
+  </div>
+  <div class="card-body">
+    <div class="row">
+        <div class="col-md-4">
+            <img [src]="film.imageUrl" style="width:208px; height:268px;" class="center-block img-responsive" [title]="film.title" >
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <h5 class="col-md-4">Title</h5>
+            <h5 class="col-md-8">{{film.title}}</h5>
+          </div>
+          <div class="row">
+            <h5 class="col-md-4">Year</h5>
+            <h5 class="col-md-8">{{film.year}}</h5>
+          </div>
+          <div class="row">
+            <h5 class="col-md-4">Rated</h5>
+            <h5 class="col-md-8">{{film.rated}}</h5>
+          </div>
+          <div class="row">
+            <h5 class="col-md-4">Genre</h5>
+            <h5 class="col-md-8">{{film.genre}}</h5>
+          </div>
+          <div class="row">
+            <h5 class="col-md-4">Director</h5>
+            <h5 class="col-md-8">{{film.director}}</h5>
+          </div>
+          <div class="row">
+            <h5 class="col-md-4">Language</h5>
+            <h5 class="col-md-8">{{film.language}}</h5>
+          </div>
+          <div class="row">
+            <h5 class="col-md-4">Starring...</h5>
+            <h5 class="col-md-8">{{film.actors}}</h5>
+          </div>
+        </div>
+        <div>
+          <i class="fa fa-heart" title="Add to Favorite"></i>
+        </div>
+    </div>
+  </div>
+    <div>
+      <button class="btn btn-danger" (click)="onBack()">Back</button><i class="fa fa-chevron-left"></i>
+    </div>
+    <div>
+      <button (click)="Addfav()">Add to favorite</button>
+    </div>
+  </div>
