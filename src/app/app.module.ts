@@ -13,7 +13,7 @@ import { FilmService } from './films/shared/films.service';
 import { FilmDetailComponent } from './films/film-detail.component';
 import { FilmResolver } from './films/filmlist.resolver';
 import { FilmDetailResolver } from './films/filmdetail.resolver';
-import { AuthService } from './users/auth.service';
+import { AuthService } from './films/shared/auth.service';
 import { FilmGuard } from './films/film.guard';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -42,15 +42,15 @@ import { CommonModule } from '@angular/common';
     config: {
       tokenGetter: function tokenGetter() {
        return localStorage.getItem('access_token'); },
-       whitelistedDomains: ['localhost:3000'],
-       blacklistedRoutes: ['http://localhost:3000/users/login']
+       whitelistedDomains: ['localhost:8080'],
+       blacklistedRoutes: ['http://localhost:8080/users/login']
     }
    }),
    FlexLayoutModule,
     RouterModule.forRoot([
       {path: 'films', component: FilmListComponent, resolve: {films: FilmResolver}},
-      {path: 'films/:id', component: FilmDetailComponent, canActivate: [AuthGuard] },
-      {path : 'favorites', component: FavoriteComponent},
+      {path: 'films/:id', component: FilmDetailComponent, canActivate: [FilmGuard] },
+      {path : 'favorites', component: FavoriteComponent, canActivate: [FilmGuard]},
       {path: 'user', loadChildren: () => import('./users/user.module').then(m => m.UserModule)}
     ])
 
@@ -58,6 +58,7 @@ import { CommonModule } from '@angular/common';
   providers: [
     FilmService,
     FilmResolver,
+    FilmGuard,
     FilmDetailResolver,
     AuthService,
     AuthGuard

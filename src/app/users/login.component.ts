@@ -1,6 +1,6 @@
-import { Component} from '@angular/core';
-import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import { AuthService } from '../films/shared/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,17 +8,32 @@ import { Router } from '@angular/router';
   styles: ['']
 })
 
-export class LoginComponent{
+export class LoginComponent implements OnInit{
   username: string;
   password: string;
   loginInvalid: boolean = false;
+  returnUrl: string;
+  errorMessage = 'Invalid username and password...'
 
-  constructor(private auth: AuthService, private router: Router){
+  constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute){
 
   }
+
+  ngOnInit() {
+    this.auth.removeUserInfo();
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+
   login(formValue){
-    this.auth.loginUser(formValue.email, formValue.password).subscribe(resp=> {
-      this.router.navigate(['/films'])
+    this.auth.loginUser(formValue.email, formValue.password).subscribe(resp => {
+        this.router.navigateByUrl(this.returnUrl);
+    },error=> {
+      this.loginInvalid = true;
     })
+  }
+
+  onCancel() {
+    this.router.navigate(['/'])
   }
 }

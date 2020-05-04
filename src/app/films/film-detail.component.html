@@ -1,4 +1,4 @@
-<hr>
+<!-- <hr>
 <div class="card container">
   <div class="card-header">
     <h1>{{film.title}}</h1>
@@ -47,6 +47,41 @@
       <button class="btn btn-danger" (click)="onBack()">Back</button><i class="fa fa-chevron-left"></i>
     </div>
     <div>
-      <button (click)="Addfav()">Add to favorite</button>
+      <i  *ngIf="!isFavorite" (click)="Addfav()" [class.done]="isClicked" class="material-icons red">favorite</i>
     </div>
+   <div>
+      {{errorMessage}}
+    </div> 
+  </div> -->
+  <hr/>
+  <div>
+    <button class="btn btn-danger" mat-button (click)="onBack()">Go Back to Movies</button><i class="fa fa-chevron-left"></i>
+  </div> 
+<div class="card container">
+  <div class="card-header ">
+  <h1 style="text-align: center;"> {{film.title}}</h1> 
   </div>
+</div>
+<div *ngIf="!isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+<div fxLayoutAlign="center">
+  <mat-card class="example-card" >
+    <mat-card-header>
+    </mat-card-header>
+    <img mat-card-image [src]="film.imageUrl" alt={{film.title}}>
+    <mat-card-content>
+      <p>Actors:  &nbsp;&nbsp;&nbsp;&nbsp;<strong>{{film.actors}}</strong></p>
+      <p>Year: &nbsp;&nbsp;&nbsp;&nbsp;<b>{{film.year}}</b></p>
+      <p>Genre:  &nbsp;&nbsp;&nbsp;&nbsp;<b>{{film.genre}}</b></p>
+      <p>Actors: &nbsp;&nbsp;&nbsp;&nbsp;<b>{{film.rated}}</b></p>
+      <i  *ngIf="!isFavorite" (click)="Addfav()" [class.done]="isClicked" class="material-icons red" title="Add to favorites">favorite</i>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div>
+ <h4>{{errorMessage}}</h4> 
+</div>
+
+  
+

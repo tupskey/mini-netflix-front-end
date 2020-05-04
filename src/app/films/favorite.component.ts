@@ -3,6 +3,7 @@ import { FilmService } from './shared/films.service';
 import { IFilm } from './shared/films.model';
 import { observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { MatCard} from '@angular/material/card'
 
 @Component({
     selector: '',
@@ -10,11 +11,24 @@ import { ActivatedRoute } from '@angular/router';
     styles: [`
     .card { min-height: 350px; }
     .card { max-height: 350px; }
+    hr{border-top: 1px solid red}
+    /* i{color: red; cursor: pointer} */
+    /* .example-card{max-width:280px; min-height: 350px; background-color: black; color: white} */
+    
+  i{color : red; cursor: pointer}
+    mat-spinner{color: red}
+    ::ng-deep .mine {
+            background-color: black;
+            color: white;max-width:300px; min-height: 250px }
+           /* ::ng-deep .example-card{
+            background-color: black
+           }  */
     `]
 })
 export class FavoriteComponent implements OnInit  {
     movies:any =[];
     errorMessage = '';
+    isLoading: boolean = false;
     constructor(private filmService: FilmService, private route: ActivatedRoute){
 
     }
@@ -27,16 +41,8 @@ export class FavoriteComponent implements OnInit  {
     getFavMovies() {
         this.filmService.getFavorites().subscribe(data=> {
             this.movies = [];
-            // for (let key in data) {
-            //     this.movies.push(data[key]);
-            //     this.movies.forEach((item, index) => {
-            //         if(index !== this.movies.findIndex(i => i._id === item._id)) {
-            //             this.movies.splice(index, 1);
-            //         }
-            //     })
-            //     console.log(this.movies)
-            // }
            Object.keys(data).map((key)=> {this.movies.push(data[key])}) 
+           this.isLoading = true;
         })
     }
 
@@ -46,6 +52,7 @@ export class FavoriteComponent implements OnInit  {
          let value = idAttr.nodeValue;
         this.filmService.removeFavorite(value).subscribe(res=> {
             alert('Film removed')
+            this.ngOnInit();
         })
     }
 

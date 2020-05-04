@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators,  } from '@angular/forms';
-import { AuthService } from './auth.service';
+import { AuthService } from '../films/shared/auth.service';
 import { Router } from '@angular/router';
+import {MatButton} from '@angular/material/button'
 
 
 @Component({

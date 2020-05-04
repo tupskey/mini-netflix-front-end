@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { LoginComponent } from './login.component';
 import { SignUpComponent } from './signup.component';
+import { MaterialModule } from '../material.module';
 
 
 

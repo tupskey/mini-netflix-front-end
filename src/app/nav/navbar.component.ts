@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../users/auth.service';
+import { AuthService } from '../films/shared/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 
 export class NavBarComponent{
 
-constructor(private auth: AuthService, private router: Router){
+constructor(public auth: AuthService, private router: Router){
 
 }
 

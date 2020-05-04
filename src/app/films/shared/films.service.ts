@@ -8,23 +8,16 @@ import { throwError } from 'rxjs'
   providedIn: 'root'
 })
 export class FilmService{
- filmUrl = 'http://localhost:3000';
+ filmUrl = 'http://localhost:8080';
  headers = new HttpHeaders().set('Content-Type', 'application/json')
   constructor(private http: HttpClient){
 
   }
 
   getFilms():Observable<IFilm[]>{
-    return this.http.get<IFilm[]>(`${this.filmUrl}/films`)
+    return this.http.get<IFilm[]>(`${this.filmUrl}/films`, {headers: this.headers})
   }
 
-  // getFilm(id):Observable<any>{
-  //   return this.http.get<any>(`${this.filmUrl}/films/${id}`,{headers: this.headers})
-  //   .pipe(
-  //     tap(data => console.log('getProduct:' + JSON.stringify(data))),
-  //   catchError(this.handleError)
-  //   )
-  // }
 
   getFilm(id):Observable<any>{
     return this.http.get(`${this.filmUrl}/films/${id}`, {headers: this.headers})
@@ -36,17 +29,25 @@ export class FilmService{
   }
 
   getFavorites(){
-    return this.http.get(`${this.filmUrl}/favorites`)
+    return this.http.get(`${this.filmUrl}/favorites`, {headers: this.headers})
     .pipe(map((res) => {
       return res;
     }),
     catchError(this.handleError)
     )
-  
+  }
+
+  getFavId(id){
+    return this.http.get(`${this.filmUrl}/favorites/${id}`, {headers: this.headers})
+    .pipe(map((res)=> {
+      return res;
+    }),
+      catchError(this.handleError)
+    )
   }
 
   addFavorite(id, data): Observable<IFilm> {
-    return this.http.post<IFilm>(`${this.filmUrl}/favorites/${id}`, data, )
+    return this.http.post<IFilm>(`${this.filmUrl}/favorites/${id}`, data, {headers: this.headers})
   }
 
   removeFavorite(id):Observable<IFilm>{

@@ -1,8 +1,26 @@
 <div>
-    <h2>All my favorite movies....</h2>
+    <h1 style="text-align: center;">My favorite movies....</h1>
 </div>
+<hr class="redd"/>
+<div *ngIf="!isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+<section *ngFor="let fav of movies[0]" fxLayout="row" class="col-md-6">
+  <mat-card class="mine" >
+    <mat-card-header>
+    </mat-card-header>
+    <img mat-card-image [src]="fav.imageUrl" class="example-card" alt={{fav.title}}>
+    <mat-card-content>
+      <p>Actors:  &nbsp;&nbsp;&nbsp;&nbsp;<strong>{{fav.actors}}</strong></p>
+      <p>Year: &nbsp;&nbsp;&nbsp;&nbsp;<b>{{fav.year}}</b></p>
+      <p>Genre:  &nbsp;&nbsp;&nbsp;&nbsp;<b>{{fav.genre}}</b></p>
+      <p>Actors: &nbsp;&nbsp;&nbsp;&nbsp;<b>{{fav.rated}}</b></p>
+      <i id={{fav?._id}} class="material-icons" (click)="removeFav($event)">delete_outline</i>
+    </mat-card-content>
+  </mat-card>
+</section>
 
-<section *ngFor="let fav of movies[0]">
+<!-- <section *ngFor="let fav of movies[0]">
     <div class="container" >
         <div class="card" style="width: 18rem; margin-bottom: 9rem;"  >           
     <img [src]="fav?.imageUrl" class="card-img-top" alt="{{fav.title}}" style="width:208px; height:268px">
@@ -14,11 +32,12 @@
                 {{fav?.genre }}</p>
 
                 <p class="card-text">Duration: &nbsp;&nbsp;&nbsp; {{fav?.runtime}}</p>
+                <i id={{fav?._id}} class="material-icons" (click)="removeFav($event)">delete_outline</i>
               </div>
           </div>
     </div>
     <div>
-      <button id={{fav?._id}} (click)="removeFav($event)">Remove Favorite</button>
+      
       
     </div>
-</section>
+</section> -->

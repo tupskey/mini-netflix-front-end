@@ -4,17 +4,22 @@
           <h1>Latest Movies</h1>
         </div>
         <div class="col-md-4">
-          <input [(ngModel)]="filmFilter" type="text" >
+          <input [(ngModel)]="filmFilter" type="text" placeholder="Search movies" class="form-control" >
         </div>
   </div>
         <hr/>
+     
+        <div>
+          <mat-spinner *ngIf="!films"></mat-spinner>
+        </div>
           <div class="container">
               <div class="col-md-3" *ngFor="let film of filteredFilms">
                 <div class="card" style="width: 18rem; margin-bottom: 9rem;" >
+                  <h2 style="text-align: center;">{{film.title}}</h2>
                   <a [routerLink]="['/films/', film._id]">
                   <img [src]="film?.imageUrl" class="card-img-top" alt="{{film.title}}" style="width:208px; height:268px">
                   </a>
-                    <div class="card-body">
+                    <!-- <div class="card-body">
                       <h5 class="card-title">
                         Title: &nbsp;&nbsp;&nbsp;{{film?.title  | uppercase}}
                       </h5>
@@ -22,8 +27,9 @@
                       {{film?.genre | uppercase}}</p>
 
                       <p class="card-text">Duration: &nbsp;&nbsp;&nbsp; {{film?.runtime | uppercase}}</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
+        
 </div>
