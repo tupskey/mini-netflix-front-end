@@ -33,7 +33,7 @@ constructor(private fb: FormBuilder,
       this.authService.register(this.registerForm.value)
       .subscribe(()=>{
         alert('ok');
-        this.router.navigate(['login']);
+        this.router.navigate(['/login']);
         console.log(this.registerForm.value);
       }
       )

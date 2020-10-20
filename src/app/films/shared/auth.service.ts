@@ -12,6 +12,7 @@ export class AuthService {
   currentUser: IUser;
 
   constructor(private http: HttpClient){
+    
   }
 
 

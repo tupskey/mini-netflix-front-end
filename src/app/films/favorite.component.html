@@ -2,7 +2,9 @@
     <h1 style="text-align: center;">My favorite movies....</h1>
 </div>
 <hr class="redd"/>
-<div *ngIf="!isLoading">
+<div  *ngIf="!movies[0].length" fxLayout="column" fxLayoutAlign="center center">
+  <h3>It seems you have no movies added as favorite</h3><br>
+  <p><a [routerLink]="['/films']" style="color:red">Let Me Add Favourite Movies</a></p><br>
   <mat-spinner></mat-spinner>
 </div>
 <section *ngFor="let fav of movies[0]" fxLayout="row" class="col-md-6">
@@ -14,7 +16,7 @@
       <p>Actors:  &nbsp;&nbsp;&nbsp;&nbsp;<strong>{{fav.actors}}</strong></p>
       <p>Year: &nbsp;&nbsp;&nbsp;&nbsp;<b>{{fav.year}}</b></p>
       <p>Genre:  &nbsp;&nbsp;&nbsp;&nbsp;<b>{{fav.genre}}</b></p>
-      <p>Actors: &nbsp;&nbsp;&nbsp;&nbsp;<b>{{fav.rated}}</b></p>
+      <p>Rating: &nbsp;&nbsp;&nbsp;&nbsp;<b>{{fav.rated}}</b></p>
       <i id={{fav?._id}} class="material-icons" (click)="removeFav($event)">delete_outline</i>
     </mat-card-content>
   </mat-card>

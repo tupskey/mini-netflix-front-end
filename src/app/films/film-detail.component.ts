@@ -62,10 +62,10 @@ export class FilmDetailComponent implements OnInit{
       this.isFavorite = true;
       this.isClicked = true;
       setTimeout(()=> {
-        this.ngOnInit();
+        this.ngOnInit();    
+      this.router.navigate(['/favorites'])
       }, 3000)
      
-      // this.router.navigate(['/favorites'])
     })
   }
   

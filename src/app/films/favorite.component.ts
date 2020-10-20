@@ -16,7 +16,8 @@ import { MatCard} from '@angular/material/card'
     /* .example-card{max-width:280px; min-height: 350px; background-color: black; color: white} */
     
   i{color : red; cursor: pointer}
-    mat-spinner{color: red}
+    ::ng-deep mat-spinner{color: red}
+
     ::ng-deep .mine {
             background-color: black;
             color: white;max-width:300px; min-height: 250px }
@@ -28,7 +29,7 @@ import { MatCard} from '@angular/material/card'
 export class FavoriteComponent implements OnInit  {
     movies:any =[];
     errorMessage = '';
-    isLoading: boolean = false;
+    isLoading = false ;
     constructor(private filmService: FilmService, private route: ActivatedRoute){
 
     }
